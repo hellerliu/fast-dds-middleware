@@ -1,0 +1,5 @@
+enableLog: false
+logPath: ../log
+fileSize: 1
+fileNum: 2
+launchFile: ../res/launch/launcher.yml

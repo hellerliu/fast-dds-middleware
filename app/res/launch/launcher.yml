@@ -1,0 +1,9 @@
+-
+  file: ./plugin_manager
+  args: -f plugin_sub,plugin_pub
+  enable: true
+-
+  file: ./commu_pub  
+-
+  file: ./commu_sub
+  args: 

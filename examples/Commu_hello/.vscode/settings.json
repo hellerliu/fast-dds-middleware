@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.json": "jsonc",
-        "chrono": "cpp",
-        "variant": "cpp",
-        "system_error": "cpp"
-    }
-}

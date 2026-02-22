@@ -17,13 +17,8 @@ namespace mytest
     class IMyTestCall : public rpc::BaseService
     {
     public:
-        IMyTestCall(bool isClient = true, unsigned int timeOut = 5) : BaseService(isClient, timeOut)
+        IMyTestCall() : IMyTestCall(true)
         {
-            addFunction<&IMyTestCall::addOne>();
-            addFunction<&IMyTestCall::fiber_test>(true);
-            addFunction<&IMyTestCall::returnError>();
-            addFunction<&IMyTestCall::array_test>();
-            addFunction<&IMyTestCall::fiberTest>(true);
         }
 
         CLIENT_CALL(addOne, int, int);
@@ -36,6 +31,16 @@ namespace mytest
         }
 
         CLIENT_CALL(fiberTest, std::string, std::string);
+
+    protected:
+        IMyTestCall(bool isClient) : BaseService(isClient, 5)
+        {
+            addFunction<&IMyTestCall::addOne>();
+            addFunction<&IMyTestCall::fiber_test>(true);
+            addFunction<&IMyTestCall::returnError>();
+            addFunction<&IMyTestCall::array_test>();
+            addFunction<&IMyTestCall::fiberTest>(true);
+        };
     };
 
 }

@@ -86,6 +86,15 @@ public:
         return 0;
     }
 
+
+     int jsonTest(const JsonStruct &req, JsonStruct &resp) override
+     {
+        resp.data = req.data + 1;
+        resp.msg = req.msg + " world";
+        printf("jsonTest: %d %s\n", req.data, req.msg.c_str());
+        return 0;
+     }
+
 private:
     //
     std::shared_ptr<rpc::FiberThread> other_thread_;

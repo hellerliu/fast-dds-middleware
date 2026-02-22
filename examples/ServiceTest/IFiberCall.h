@@ -16,12 +16,34 @@ struct EchoMessage
     }
 };
 
+struct JsonStruct
+{
+    int data;
+    std::string msg;
+};
+
+namespace reflect
+{
+    DEFINE_STRUCT_SCHEMA(JsonStruct,
+                         DEFINE_STRUCT_FIELD(data),
+                         DEFINE_STRUCT_FIELD(msg));
+
+}
+
 class IFiberCall : public rpc::BaseService
 {
 public:
-    IFiberCall(bool isClient = true, unsigned int timeOut = 5) : BaseService(isClient, timeOut)
+    IFiberCall() : IFiberCall(true)
     {
-        addFunction<&IFiberCall::fiberTest>(true);
     }
     CLIENT_CALL(fiberTest, EchoMessage, proto::EchoMessage);
+
+    CLIENT_CALL(jsonTest, JsonStruct, JsonStruct);
+
+protected:
+    IFiberCall(bool isClient) : BaseService(isClient, 5)
+    {
+        addFunction<&IFiberCall::fiberTest>(true);
+        addFunction<&IFiberCall::jsonTest>(true);
+    }
 };
